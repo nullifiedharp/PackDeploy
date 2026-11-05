@@ -10,7 +10,7 @@ optional backup, and the world's pack lists get their version numbers updated.
 
 Standard library only. Python 3.10+.
 
-Copyright (C) 2026 Dave Rishforth
+Copyright (C) 2026 NullHarp
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

@@ -41,7 +41,7 @@ No third-party packages are needed.
 ### Run from source
 
 ```bash
-git clone https://github.com/<your-username>/PackDeploy.git
+git clone https://github.com/nullifiedharp/PackDeploy.git
 cd PackDeploy
 python PackDeploy.py
 ```
@@ -103,7 +103,7 @@ my_addon.mcaddon
 
 ## License
 
-Copyright (C) 2026 Dave Rishforth
+Copyright (C) 2026 NullHarp
 
 PackDeploy is free software: you can redistribute it and/or modify it under the terms of the [GNU General Public License v3.0](LICENSE) as published by the Free Software Foundation.
 
