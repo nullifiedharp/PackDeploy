@@ -378,14 +378,39 @@ def update_world(world_dir, done, add_new, log):
             else:
                 log(f"  {fname}: {p.name} not enabled on this world (add-new is off)", "warn")
 
-        if changed:
-            if os.path.exists(path):
-                shutil.copy2(path, path + ".bak")
+        if not changed:
+            log(f"  {fname} already up to date", "dim")
+            continue
+        if os.path.exists(path):
+            backup_file(path, log)
+        try:
             with open(path, "w", encoding="utf-8") as f:
                 json.dump(data, f, indent=2)
             log(f"✓ Updated {fname}", "good")
-        else:
-            log(f"  {fname} already up to date", "dim")
+        except OSError as e:
+            log(f"✗ Couldn't write {fname} ({e}). The pack files are installed, but the world "
+                f"won't load them until this file is updated. Check that your Windows user "
+                f"can write to this share / that the file isn't read-only.", "bad")
+
+
+def backup_file(path, log):
+    """Plain byte copy (no permission/timestamp copying, which SMB/NAS shares often
+    refuse). Never fatal: a failed backup is a warning, not a reason to abort."""
+    candidates = [path + ".bak", f"{path}.{time.strftime('%Y%m%d-%H%M%S')}.bak"]
+    last = None
+    for bak in candidates:
+        try:
+            if os.path.exists(bak):
+                try:
+                    os.chmod(bak, 0o666)  # clear read-only so it can be replaced
+                except OSError:
+                    pass
+            shutil.copyfile(path, bak)
+            return bak
+        except OSError as e:
+            last = e
+    log(f"  ⚠ Couldn't back up {os.path.basename(path)} ({last}) — continuing without a backup", "warn")
+    return None
 
 
 # --------------------------------------------------------------------------- #

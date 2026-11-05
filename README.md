@@ -46,13 +46,24 @@ PackDeploy does all of that in one step.
 ## Requirements
 
 - Windows (it should also work on macOS/Linux, but it has only been built for Windows)
-- Python 3.10+ with tkinter (included in the standard Windows installer)
-
-No third-party packages are needed.
+- **Installer:** nothing else. Python isn't needed
+- **From source:** Python 3.10+ with tkinter (included in the standard Windows Python installer). No third-party packages are needed
 
 ## Installation
 
+### Installer (recommended)
+
+1. Download `PackDeploy-<version>-Setup.exe` from the [latest release](https://github.com/nullifiedharp/PackDeploy/releases/latest).
+2. Run it and follow the prompts. No admin rights are needed.
+3. Optionally, tick **Open .mcaddon and .mcpack files with PackDeploy**. This adds a **Deploy with PackDeploy** option to the right-click menu for add-on files.
+
+Windows SmartScreen may warn that the installer is from an unknown publisher, because it isn't code-signed. Click **More info → Run anyway**.
+
+To update, run the newer installer and it will replace the old version. To uninstall, use **Settings → Apps**.
+
 ### Run from source
+
+Requires Python 3.10+.
 
 ```bash
 git clone https://github.com/nullifiedharp/PackDeploy.git
@@ -60,18 +71,13 @@ cd PackDeploy
 python PackDeploy.py
 ```
 
-### Build a standalone .exe
+### Build it yourself
 
-```bash
-pip install pyinstaller
-pyinstaller --onefile --windowed --name PackDeploy --icon assets/icon.ico --add-data "assets/icon.ico;assets" PackDeploy.py
-```
+Run `build.bat` from the repo folder (optionally with a version number, e.g. `build.bat 1.2.0`). It will:
 
-`--icon` sets the .exe's icon in Explorer, and `--add-data` bundles the icon so the app window and taskbar use it too.
-
-The executable will be in `dist/PackDeploy.exe`.
-
-To open add-ons by double-clicking them: right-click any `.mcaddon` → **Open with** → **Choose another app** → browse to `PackDeploy.exe` → tick **Always use this app**.
+1. Install PyInstaller and build `dist\PackDeploy.exe`, a portable single-file app
+2. Install Inno Setup 6 through winget if it isn't already installed
+3. Compile `installer\PackDeploy-<version>-Setup.exe` from `installer.iss`
 
 ## Usage
 

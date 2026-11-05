@@ -1,0 +1,6 @@
+build/
+dist/
+installer/
+*.spec
+__pycache__/
+*.pyc
