@@ -1,6 +1,20 @@
-# PackDeploy
+<p align="center">
+  <img src="assets/icon.png" alt="PackDeploy icon" width="128">
+</p>
 
-A desktop tool for installing and updating Minecraft **Bedrock** add-ons on a dedicated server, without rebuilding the world.
+<h1 align="center">PackDeploy</h1>
+
+<p align="center">
+  A desktop tool for installing and updating Minecraft <b>Bedrock</b> add-ons on a dedicated server, without rebuilding the world.
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/license-GPLv3-blue" alt="License: GPLv3">
+  <img src="https://img.shields.io/badge/python-3.10%2B-blue" alt="Python 3.10+">
+  <img src="https://img.shields.io/badge/platform-Windows-lightgrey" alt="Platform: Windows">
+</p>
+
+---
 
 Load a `.mcaddon` or `.mcpack`, point PackDeploy at your server's `resource_packs` and `behavior_packs` folders, and click **Deploy**. It extracts each pack to the right place, replaces old versions, and updates the world's pack lists so the server loads them.
 
@@ -50,8 +64,10 @@ python PackDeploy.py
 
 ```bash
 pip install pyinstaller
-pyinstaller --onefile --windowed --name PackDeploy PackDeploy.py
+pyinstaller --onefile --windowed --name PackDeploy --icon assets/icon.ico --add-data "assets/icon.ico;assets" PackDeploy.py
 ```
+
+`--icon` sets the .exe's icon in Explorer, and `--add-data` bundles the icon so the app window and taskbar use it too.
 
 The executable will be in `dist/PackDeploy.exe`.
 

@@ -398,6 +398,7 @@ class App(tk.Tk):
         self.geometry("960x660")
         self.minsize(780, 540)
         self.configure(bg=BG)
+        self._set_icon()
 
         self.cfg = self._load_cfg()
         self.packs = []
@@ -419,6 +420,16 @@ class App(tk.Tk):
         self.protocol("WM_DELETE_WINDOW", self._on_close)
         self.after(100, self._poll)
         self.log("Load a .mcaddon / .mcpack, check the folders, then hit Deploy.", "dim")
+
+    def _set_icon(self):
+        # PyInstaller --onefile unpacks bundled data to sys._MEIPASS
+        base = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+        path = os.path.join(base, "assets", "icon.ico")
+        if os.path.isfile(path):
+            try:
+                self.iconbitmap(default=path)
+            except tk.TclError:
+                pass
 
     # ---- config ----
     def _load_cfg(self):
@@ -742,6 +753,8 @@ def main():
         try:
             import ctypes
             ctypes.windll.shcore.SetProcessDpiAwareness(1)
+            # own taskbar identity, so Windows shows our icon instead of python.exe's
+            ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("NullHarp.PackDeploy")
         except Exception:
             pass
     app = App()
