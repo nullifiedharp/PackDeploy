@@ -18,7 +18,7 @@
 
 Load a `.mcaddon` or `.mcpack`, point PackDeploy at your server's `resource_packs` and `behavior_packs` folders, and click **Deploy**. It extracts each pack to the right place, replaces old versions, and updates the world's pack lists so the server loads them.
 
-It can also remove packs cleanly, and its built-in **PackDoctor** checks old add-ons for the things that break them on newer Minecraft versions, fixing the simple ones automatically.
+It can also remove packs cleanly, and its built-in **PackDoctor** checks old add-ons for the things that break them on newer Minecraft versions, fixing the **simple** ones automatically.
 
 ## Why
 
