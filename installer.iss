@@ -3,7 +3,7 @@
 
 #define AppName      "PackDeploy"
 #ifndef AppVersion
-  #define AppVersion "1.0.0"
+  #define AppVersion "1.1.0"
 #endif
 #define AppPublisher "NullHarp"
 #define AppURL       "https://github.com/nullifiedharp/PackDeploy"

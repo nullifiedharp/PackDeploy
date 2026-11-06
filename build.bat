@@ -4,13 +4,13 @@ rem ============================================================
 rem  PackDeploy build script
 rem  Builds dist\PackDeploy.exe with PyInstaller, then compiles
 rem  installer\PackDeploy-<version>-Setup.exe with Inno Setup 6.
-rem  Usage:  build.bat            (version 1.0.0)
+rem  Usage:  build.bat            (version 1.1.0)
 rem          build.bat 1.2.0      (custom version)
 rem ============================================================
 cd /d "%~dp0"
 
 set "VERSION=%~1"
-if "%VERSION%"=="" set "VERSION=1.0.0"
+if "%VERSION%"=="" set "VERSION=1.1.0"
 
 echo.
 echo [1/3] Installing / updating PyInstaller...
